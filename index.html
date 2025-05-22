@@ -3,19 +3,22 @@ layout: home
 title: "Akash Hamal — Bug Bounty Writeups"
 ---
 
-<!-- Custom dark-styled landing page -->
+<!-- Custom modern dark-themed homepage -->
 <style>
+  * {
+    box-sizing: border-box;
+  }
   body {
-    background-color: #0f0f0f;
-    color: #d0ffd0;
-    font-family: 'Segoe UI', sans-serif;
+    background-color: #0d0d0d;
+    color: #d6ffd6;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
   }
   header {
     background-color: #111;
-    padding: 1rem;
-    border-bottom: 2px solid #1db954;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #1db954;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,45 +26,75 @@ title: "Akash Hamal — Bug Bounty Writeups"
   header h1 {
     margin: 0;
     color: #1db954;
+    font-weight: 700;
+    font-size: 1.6rem;
   }
   nav a {
-    color: #aaa;
-    margin-left: 1rem;
+    color: #bbb;
+    margin-left: 1.2rem;
     text-decoration: none;
+    font-weight: 500;
   }
   nav a:hover {
     color: #1db954;
   }
   main {
     padding: 2rem;
-    max-width: 800px;
+    max-width: 960px;
     margin: auto;
   }
   .profile {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
   }
   .profile img {
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    margin-right: 1rem;
+    height: 120px;
+    width: 120px;
+    border: 2px solid #1db954;
   }
-  .profile div {
-    line-height: 1.6;
+  .profile-info h2 {
+    margin: 0 0 0.2rem;
+    color: #f0f0f0;
+  }
+  .profile-info p {
+    margin: 0.2rem 0;
+    line-height: 1.5;
+  }
+  .profile-info a {
+    color: #1db954;
+    text-decoration: none;
+  }
+  .profile-info a:hover {
+    text-decoration: underline;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ccffcc;
   }
   .posts ul {
     list-style: none;
     padding: 0;
   }
   .posts li {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
   .posts a {
-    color: #1db954;
-    font-weight: bold;
+    color: #66ff99;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-decoration: none;
+  }
+  .posts a:hover {
+    text-decoration: underline;
+  }
+  .posts span {
+    color: #888;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
   }
 </style>
 
@@ -76,7 +109,7 @@ title: "Akash Hamal — Bug Bounty Writeups"
 <main>
   <div class="profile">
     <img src="https://avatars.githubusercontent.com/u/103249298" alt="Akash Hamal profile">
-    <div>
+    <div class="profile-info">
       <h2>Akash Hamal — Security Researcher</h2>
       <p>Bug bounty hunter | Developer | InfoSec Learner</p>
       <p><a href="mailto:akashhamal0x01@wearehackerone.com">Email</a> • <a href="https://x.com/akashhamal0x01">X (Twitter)</a></p>
@@ -87,7 +120,7 @@ title: "Akash Hamal — Bug Bounty Writeups"
   <div class="posts">
     <ul>
       {% for post in site.posts %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a> <span>({{ post.date | date: "%b %d, %Y" }})</span></li>
+        <li><a href="{{ post.url }}">{{ post.title }}</a><span> ({{ post.date | date: "%b %d, %Y" }})</span></li>
       {% endfor %}
     </ul>
   </div>
