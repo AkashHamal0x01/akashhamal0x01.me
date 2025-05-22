@@ -4,50 +4,71 @@ title: "Mastering Small Scope Programs: A Comprehensive Guide for Bug Hunting"
 date: 2023-08-06
 author: Akash Hamal
 username: akashhamal0x01
-tags: [bug bounty, methodology, api testing,bug bounty tips]
+tags: [bug bounty, methodology, api testing, bug bounty tips]
 ---
 
 Hi there, I hope you’re all doing well. This is my fourth writeup, and today I will discuss how to approach small scope programs. By small scope programs, I mean programs that have no wildcards such as:
 
-* test.com and api.test.com in scope , etc
+- test.com and api.test.com in scope, etc
 
-We will start off by creating an account on platform and logging in. With Burp Intercept On, now your work is to check every functionality and click every link you see. You can perform CRUD operations which are available on such functionalities , while you are doing that Burp Suite will populate the SiteMap which means we will be identifying many endpoints with different parameters which we can later test on.
+We will start off by creating an account on the platform and logging in. With Burp Intercept On, your work is to check every functionality and click every link you see. You can perform CRUD operations on available functionalities. While doing that, Burp Suite will populate the SiteMap — meaning we’ll identify many endpoints with different parameters to test.
 
-Before we go further, some of you might already be uninterested in testing the website or might find it boring. However, I would suggest dedicating at least eight hours before moving on to another program. In these eight hours, you will learn the application’s purpose, its various functionalities, and how they are supposed to work.
+Before we go further, some of you might already be uninterested in testing the website or might find it boring. However, I suggest dedicating at least eight hours before moving on to another program. In these eight hours, you will learn the application’s purpose, its functionalities, and how they are supposed to work.
 
-To start off, you can first learn about the purpose of the web application itself. For that, you need to find out :
+To start off, you can first learn about the purpose of the web application itself. For that, check:
 
-* If they have published any blogs
-* If they have a Youtube channel (which can sometimes be a treasure trove)
-* If they have documentation (which can be a gold mine)
+- If they have published any blogs
+- If they have a YouTube channel (can be a treasure trove)
+- If they have documentation (a gold mine)
 
-This is where the fun begins, once you start getting familiar with your target you will notice that you are enjoying it actually and there will be some positive results soon if you stay persistent. Lets assume you know the purpose of most of functionalities and the application and now you are ready to take off.
+Once you start getting familiar with your target, you’ll notice you are enjoying it and results will follow if you stay persistent. Let’s assume you know most of the functionalities and are ready to take off.
+
+## One At a Time:
+
+Test one functionality at a time. Try to perform CRUD (Create, Read, Update, DELETE) operations on each endpoint. For example, if `/v1/user/12345` is an endpoint:
+
+- Create: `POST /v1/user`
+- Read: `GET /v1/user/12345`
+- Update: `PUT /v1/user/12345` (sometimes `PATCH`)
+- Delete: `DELETE /v1/user/12345`
+
+### Example:
+
+```
+POST /v1/user HTTP/1.1
+Host: test.com
+Content-Type: application/json
+Authorization: Bearer your_access_token
+
+{
+  "username": "newUser123",
+  "password": "passw0rd",
+  "email": "newuser123@test.com",
+  "firstName": "New",
+  "lastName": "User"
+}
+```
+
+Make sure to include required headers like `Content-Type: application/json`. Many endpoints return errors if headers or values are missing.
 
 ...
 
-**Final Words**
+## Final Words
 
-Everything is free on internet, its an ocean where you can swim unless you don’t know ofc😂 but eventually you will learn xD
+Everything is free on the internet. It’s an ocean — swim, don’t sink. 😂
 
-Stay Persistent, don’t get distracted. Even a bit of progress every day counts.
+Stay persistent, don’t get distracted. Even small daily progress counts. Take care of your health too.
 
-Take care of health too
-
-Finally you should :
+Finally you should:
 
 ![This is the way](https://cdn-images-1.medium.com/max/2434/0*Q5OPzDQDQIeCSvjV)
 
-Rather than just scrolling twitter daily and waiting for someone to mentor. Remember If you cannot help yourself, no one can. Those who are successful now were persistent; they were eager to learn and had a vision. This is the way.
+Rather than just scrolling Twitter daily and waiting for mentorship — remember: if you cannot help yourself, no one can. Those who are successful now were persistent, eager to learn, and had a vision. **This is the way.**
 
-***How you are supposed to find vulnerabilities if you just give up in some minutes or some hrs, or the worst is doing nothing and sitting just thinking lol.***
+**How are you supposed to find vulnerabilities if you give up in a few minutes or hours, or worse, do nothing at all?**
 
-It requires **persistence**, **patience** and **determination. Don’t give up easily**, it might take months, years. Remember **Duplicate reports** are part of the process.
+It requires **persistence**, **patience**, and **determination**. Don’t give up easily — it may take months or years. Remember, **duplicate reports** are part of the process.
 
-**Every failed attempt is a step towards success. Every bug that you don’t find gets you closer to the bugs you will eventually find. Treat every ‘failure’ as a learning opportunity.**
+**Every failed attempt is a step toward success. Every bug you don’t find gets you closer to the ones you will. Treat every ‘failure’ as a learning opportunity.**
 
-And Of course I didn’t cover SQLI, SSRF, etc other categories as I believe most of you are familiar with these categories. You should try everything on each parameters and verify how they are handling inputs and check for different vulnerabilities.
-
-I believe I covered some basic topics in this writeup. I did not cover much recon as we dived into the application and I hope they are helpful to the community. I might add more based on the feedback I receive from the readers.
-
-Thank you for reading!
-
+Thanks for reading!
