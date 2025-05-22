@@ -1,8 +1,8 @@
 title: "Bug Bounty Writeups"
+description: "Writeups, techniques, and bug bounty knowledge by Akash Hamal (@akashhamal0x01)"
 author: Akash Hamal
-description: Writeups, techniques, and bug bounty knowledge by @akashhamal0x01
-baseurl: ""
 url: "https://akashhamal0x01.me"
+baseurl: ""
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
