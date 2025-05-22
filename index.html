@@ -14,27 +14,31 @@ title: "Akash Hamal — Bug Bounty Writeups"
     font-family: 'Inter', 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   header {
-    background-color: #111;
+    background: linear-gradient(to right, #111 0%, #0f0f0f 100%);
     padding: 1rem 2rem;
     border-bottom: 1px solid #168f3e;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   }
   header h1 {
     margin: 0;
     color: #168f3e;
     font-weight: 700;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     letter-spacing: 0.5px;
   }
   nav a {
     color: #bbb;
-    margin-left: 1.2rem;
+    margin-left: 1.5rem;
     text-decoration: none;
     font-weight: 500;
+    transition: color 0.3s;
   }
   nav a:hover {
     color: #168f3e;
@@ -43,9 +47,9 @@ title: "Akash Hamal — Bug Bounty Writeups"
     background-color: #222;
     padding: 2rem;
     max-width: 960px;
-    margin: 2rem auto;
+    margin: 2.5rem auto;
     border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   }
   .profile {
     display: flex;
@@ -62,7 +66,7 @@ title: "Akash Hamal — Bug Bounty Writeups"
   .profile-info h2 {
     margin: 0 0 0.2rem;
     color: #e8fce8;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   .profile-info p {
     margin: 0.2rem 0;
