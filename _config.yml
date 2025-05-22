@@ -3,6 +3,6 @@ description: "Writeups, techniques, and bug bounty knowledge by Akash Hamal (@ak
 author: Akash Hamal
 url: "https://akashhamal0x01.me"
 baseurl: ""
-theme: jekyll-theme-cayman
+theme: null
 plugins:
   - jekyll-feed
