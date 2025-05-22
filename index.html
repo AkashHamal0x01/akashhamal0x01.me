@@ -28,11 +28,18 @@ title: "Akash Hamal — Bug Bounty Writeups"
   }
   header h1 {
     margin: 0;
-    color: #168f3e;
     font-weight: 700;
     font-size: 1.8rem;
     letter-spacing: 0.5px;
   }
+  header h1 span {
+    display: inline-block;
+    font-weight: bold;
+  }
+  header h1 .green { color: #1db954; }
+  header h1 .lime { color: #a8ff60; }
+  header h1 .mint { color: #6effb5; }
+  header h1 .cyan { color: #66ffe0; }
   nav a {
     color: #bbb;
     margin-left: 1.5rem;
@@ -119,7 +126,10 @@ title: "Akash Hamal — Bug Bounty Writeups"
 </style>
 
 <header>
-  <h1>Akash Hamal</h1>
+  <h1>
+    <span class="green">A</span><span class="lime">k</span><span class="mint">a</span><span class="cyan">s</span><span class="green">h</span>
+    <span class="lime">H</span><span class="mint">a</span><span class="cyan">m</span><span class="green">a</span><span class="lime">l</span><span class="mint">0</span><span class="cyan">x</span><span class="green">0</span><span class="lime">1</span>
+  </h1>
   <nav>
     <a href="/">Home</a>
     <a href="/about">About</a>
