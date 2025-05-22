@@ -1,0 +1,24 @@
+title: "Akash Hamal"
+description: "Bug bounty writeups"
+baseurl: ""  
+url: "https://akashhamal0x01.me"
+
+markdown: kramdown
+theme: minima
+
+permalink: /:year/:month/:day/:title.html
+
+author: Akash Hamal
+email: akash@example.com
+
+social_links:
+  twitter: akashhamal0x01
+  github: AkashHamal0x01
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - node_modules
