@@ -1,14 +1,95 @@
 ---
-layout: default
-title: Home
+layout: home
+title: "Akash Hamal — Bug Bounty Writeups"
 ---
 
-<h1>🧠 Bug Bounty Writeups</h1>
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-      <span style="color: gray;">({{ post.date | date: "%b %d, %Y" }})</span>
-    </li>
-  {% endfor %}
-</ul>
+<!-- Custom dark-styled landing page -->
+<style>
+  body {
+    background-color: #0f0f0f;
+    color: #d0ffd0;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #111;
+    padding: 1rem;
+    border-bottom: 2px solid #1db954;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 {
+    margin: 0;
+    color: #1db954;
+  }
+  nav a {
+    color: #aaa;
+    margin-left: 1rem;
+    text-decoration: none;
+  }
+  nav a:hover {
+    color: #1db954;
+  }
+  main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+  }
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .profile img {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin-right: 1rem;
+  }
+  .profile div {
+    line-height: 1.6;
+  }
+  .posts ul {
+    list-style: none;
+    padding: 0;
+  }
+  .posts li {
+    margin-bottom: 1rem;
+  }
+  .posts a {
+    color: #1db954;
+    font-weight: bold;
+    text-decoration: none;
+  }
+</style>
+
+<header>
+  <h1>🌟 Akash Hamal</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/feed.xml">RSS</a>
+  </nav>
+</header>
+
+<main>
+  <div class="profile">
+    <img src="https://avatars.githubusercontent.com/u/12345678" alt="Akash Hamal profile">
+    <div>
+      <h2>Akash Hamal — Security Researcher</h2>
+      <p>Bug bounty hunter | Developer | InfoSec Learner</p>
+      <p><a href="mailto:akashhamal0x01@wearehackerone.com">Email</a> • <a href="https://x.com/akashhamal0x01">X (Twitter)</a></p>
+    </div>
+  </div>
+
+  <h2>Writeups</h2>
+  <div class="posts">
+    <ul>
+      {% for post in site.posts %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a> <span>({{ post.date | date: "%b %d, %Y" }})</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</main>
