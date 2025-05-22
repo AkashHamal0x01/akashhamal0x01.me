@@ -30,9 +30,11 @@ title: "Akash Hamal — Bug Bounty Writeups"
     margin: 0;
     font-weight: 700;
     font-size: 1.6rem;
-    color: #1db954;
     font-family: monospace;
   }
+  header h1 .root { color: #d94f4f; }
+  header h1 .user { color: #4fd99f; }
+  header h1 .sep { color: #f0f0f0; }
   nav a {
     color: #bbb;
     margin-left: 1.5rem;
@@ -72,6 +74,10 @@ title: "Akash Hamal — Bug Bounty Writeups"
     margin: 0.2rem 0;
     line-height: 1.6;
     font-size: 1rem;
+  }
+  .profile-info .separator {
+    color: #888;
+    font-weight: bold;
   }
   .profile-info a {
     color: #168f3e;
@@ -119,7 +125,9 @@ title: "Akash Hamal — Bug Bounty Writeups"
 </style>
 
 <header>
-  <h1>root@AkashHamal0x01:~/ #</h1>
+  <h1>
+    <span class="root">root</span><span class="sep">@</span><span class="user">AkashHamal0x01</span><span class="sep">:~/ #</span>
+  </h1>
   <nav>
     <a href="/">Home</a>
     <a href="/about">About</a>
@@ -131,7 +139,7 @@ title: "Akash Hamal — Bug Bounty Writeups"
     <img src="https://avatars.githubusercontent.com/u/103249298" alt="Akash Hamal profile">
     <div class="profile-info">
       <h2>Akash Hamal</h2>
-      <p>Bug Bounty Hunter | Learner</p>
+      <p>Bug Bounty Hunter <span class="separator">|</span> Learner</p>
       <p>
         <a href="mailto:akashhamal0x01@wearehackerone.com" class="social-icons">
           <img src="/assets/icons/mail.svg" alt="Mail icon">Email
