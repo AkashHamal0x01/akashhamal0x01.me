@@ -5,6 +5,10 @@ permalink: /vdp/
 ---
 
 <style>
+
+body {
+  background-color: #1a1a1a !important;
+}    
 .vdp-container {
   max-width: 800px;
   margin: 2rem auto;
