@@ -3,7 +3,6 @@ layout: home
 title: "Akash Hamal — Bug Bounty Writeups"
 ---
 
-<!-- Custom modern dark-themed homepage -->
 <style>
   * {
     box-sizing: border-box;
@@ -122,6 +121,23 @@ title: "Akash Hamal — Bug Bounty Writeups"
     font-size: 0.9rem;
     margin-left: 0.5rem;
   }
+
+  /* Hack Me Button */
+  .vdp-button {
+    color: #00ff00;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #00ff00;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  .vdp-button:hover {
+    background-color: #00ff00;
+    color: #111;
+  }
 </style>
 
 <header>
@@ -152,6 +168,9 @@ title: "Akash Hamal — Bug Bounty Writeups"
         <a href="https://hackerone.com/akashhamal0x01" class="social-icons">
           <img src="/assets/icons/hackerone.svg" alt="HackerOne logo">HackerOne
         </a>
+      </p>
+      <p>
+        <a class="vdp-button" href="/vdp/">🛡️ Hack Me (Legally)</a>
       </p>
     </div>
   </div>
