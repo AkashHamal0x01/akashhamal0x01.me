@@ -1,0 +1,6 @@
+Contact: mailto:akashhamal0x01@wearehackerone.com
+Contact: https://x.com/AkashHamal0x01
+Expires: 2030-05-01T10:22:00.000Z
+Preferred-Languages: en
+Note: All associated assets owned by me, including social media accounts and GitHub/GitLab repositories, are considered in scope.
+Note: Valid submissions will be acknowledged in the Hall of Fame (HOF), along with the reporter's name or handle, the vulnerability severity, and its impact.
