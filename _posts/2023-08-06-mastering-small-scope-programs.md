@@ -14,144 +14,176 @@ Before we go further, some of you might already be uninterested in testing the w
 
 To start off, you can first learn about the purpose of the web application itself. For that, check:
 
-- If they have published any blogs
-- If they have a YouTube channel (can be a treasure trove)
-- If they have documentation (a gold mine)
+- If they have published any blogs  
+- If they have a YouTube channel (can be a treasure trove)  
+- If they have documentation (a gold mine)  
 
-Once you start getting familiar with your target, you’ll notice you are enjoying it and results will follow if you stay persistent. Let’s assume you know most of the functionalities and are ready to take off.
+---
 
-## One At a Time:
+This is where the fun begins — once you start getting familiar with your target, you’ll notice you are enjoying it and results will follow if you stay persistent. Let’s assume you know most of the functionalities and the application, and now you are ready to take off.
 
-Test one functionality at a time. Try to perform CRUD (Create, Read, Update, DELETE) operations on each endpoint. For example, if `/v1/user/12345` is an endpoint:
+## 🧪 One At a Time:
 
-- Create: `POST /v1/user`
-- Read: `GET /v1/user/12345`
-- Update: `PUT /v1/user/12345` (sometimes PATCH)
-- Delete: `DELETE /v1/user/12345`
+Test functionality one at a time. Try to perform CRUD (Create, Read, Update, DELETE) operations on each endpoint.
 
-### Example:
+Assuming `/v1/user/12345` is the endpoint:
 
-POST /v1/user HTTP/1.1  
-Host: test.com  
-Content-Type: application/json  
-Authorization: Bearer your_access_token  
+- **Create:** `POST /v1/user HTTP/1.1`
+- **Read:** `GET /v1/user/12345 HTTP/1.1`
+- **Update:** `PUT /v1/user/12345 HTTP/1.1` (sometimes `PATCH`)
+- **Delete:** `DELETE /v1/user/12345 HTTP/1.1`
 
+---
+
+### Example Request:
+
+`POST /v1/user HTTP/1.1`  
+`Host: test.com`  
+`Content-Type: application/json`  
+`Authorization: Bearer your_access_token`  
+
+```json
 {
-    "username": "newUser123",
-    "password": "passw0rd",
-    "email": "newuser123@test.com",
-    "firstName": "New",
-    "lastName": "User"
+  "username": "newUser123",
+  "password": "passw0rd",
+  "email": "newuser123@test.com",
+  "firstName": "New",
+  "lastName": "User"
 }
+```
 
-This will create a user with the given username, password, email, firstName, and lastName values.
+---
 
 If there's an error, the response might help:
 
-- Missing `location` parameter? Add it.
-- `password` must contain alphanumeric characters? Adjust the value accordingly.
+- `Missing location parameter`
+- `"password"` must contain alphanumeric characters, etc
 
-### DELETE Example:
+---
 
-DELETE /v1/user/1337 HTTP/1.1  
-Host: test.com  
-Authorization: Bearer your_access_token
+### DELETE Request Example:
+
+`DELETE /v1/user/1337 HTTP/1.1`  
+`Host: test.com`  
+`Authorization: Bearer your_access_token`
 
 If the user is deleted, that might indicate a serious vulnerability.
 
-Also test for alternate HTTP methods like PATCH if PUT is available, and vice versa — logic might differ.
+Also test for alternate HTTP methods like `PATCH` if `PUT` is available, and vice versa — logic may differ.
 
-**Note:** `POST`, `PUT`, `PATCH` often require a valid `Content-Type` header like `application/json`. If it's missing, the site might reject your request with a `400` status.
+---
 
-## Hunting for CSRF
+### Note:
 
-Don't just try once and move on. Evaluate all endpoints. CSRF bypasses exist and vary by context. Look at past HackerOne reports, blog posts, and tools for ideas.
+`POST`, `PUT`, and `PATCH` often require the header:  
+`Content-Type: application/json`
 
-## Hunting for XSS
+If it’s missing, the site might reject your request with a `400`.
 
-Context matters! Payloads not reflecting in one place might appear elsewhere. Understand the DOM, injection point, and reflection path. Blind spraying won't help. Look for reflection in other locations in the app.
+---
 
-## Mass Assignments
+## 🎯 Hunting for CSRF
 
-Occurs when user-controlled input is blindly copied into model properties.
+Most hunters just try once and move on. But you should evaluate **all endpoints** for CSRF bypasses.
 
-POST /v1/user HTTP/1.1  
-Host: test.com  
-Content-Type: application/json  
-Authorization: Bearer your_access_token  
+Look at HackerOne reports, community blogs, or Twitter to find tested techniques.
 
+---
+
+## 💉 Hunting for XSS
+
+Context of reflection matters. Don’t blindly spray payloads. Look for:
+
+- Injection points
+- Output encoding
+- Reflection paths
+
+Just because one page escapes input doesn’t mean others will.
+
+---
+
+## 🧵 Mass Assignment
+
+Occurs when the app copies input data directly into model properties.
+
+Try modifying:
+
+```json
 {
-    "username": "newUser123",
-    "password": "passw0rd",
-    "email": "newuser123@test.com",
-    "firstName": "New",
-    "lastName": "User",
-    "userId": 1337
+  "username": "newUser123",
+  "password": "passw0rd",
+  "userId": 1337
 }
+```
 
-If `userId` is accepted and overwrites or creates with a specific ID, it can lead to ATO or data corruption.
+If you’re able to override an ID or create a user with a specific ID, it can result in ATO or account overwrite.
 
-### Tools:
+Tools:
 
-- Burp BApp: Param Miner
-- CLI: Arjun by @s0md3v (https://github.com/s0md3v/Arjun)
+- Param Miner (Burp Suite)  
+- [Arjun by @s0md3v](https://github.com/s0md3v/Arjun)
 
-## Excessive Data Exposure
+---
 
-REST APIs may reveal too much:
+## 🔓 Excessive Data Exposure
 
-GET /v1/user/1337 HTTP/1.1  
-...
+APIs may leak sensitive data.
 
+Example response:
+
+```json
 {
   "id": 1337,
   "username": "JohnDoe",
-  "email": "john.doe@example.com",
-  "firstName": "John",
-  "lastName": "Doe",
-  "age": 30,
-  "height": "180 cm",
-  "location": "New York, USA",
-  "postalAddress": "10021-3100 New York, Park Ave",
+  "email": "john@example.com",
   "passportNumber": "123456789",
-  "created_at": "2021-08-05T14:45:31.000Z"
+  "location": "New York, USA"
 }
+```
 
-Sensitive fields (PII) like passport number, address, etc. should not be exposed.
+These are considered PII and must be reviewed.
 
-## Finding Hidden Endpoints/Params
+---
+
+## 🔍 Finding Hidden Endpoints
 
 Look in:
 
-- JS files
-- Page source
+- JS files  
+- Page source  
+- API docs  
 
-### Tools:
+Tools:
 
-- LinkFinder by @GerbenJavado: https://github.com/GerbenJavado/LinkFinder
+- [LinkFinder](https://github.com/GerbenJavado/LinkFinder)
 - JS Link Finder (Burp BApp)
 
-## Reading Documentation
+---
 
-Docs = gold mine.
+## 📚 Documentation is Gold
 
-- If docs say "Only owner can invite", but admin can too → vuln.
-- Always reference docs in reports.
+If docs say “Only Owner can invite users” and you find Admin can — you have a bug.
 
-## Staying Updated
+Use wording in the docs as part of your proof in the report.
 
-- Fork Postman collections
-- Follow them on X/Twitter
-- Subscribe to newsletters, changelogs, HackerOne updates
+---
 
-## Final Words
+## 🛰️ Stay Updated
 
-- Stay persistent, don’t expect instant wins
-- Every attempt teaches something
-- Recon isn't covered here — focus was on in-app testing
-- Learn from others, follow blogs, read reports
-- Don’t give up — this is a long game
+- Fork their Postman collections  
+- Follow them on X/Twitter  
+- Enable notifications or newsletter  
+- Watch changelogs, HackerOne updates
 
-Thank you for reading!
+---
 
-*Bug Bounty | Bug Bounty Tips | Bug Bounty Writeup | Hacking | HackerOne*
+## 💬 Final Words
+
+- Persistence matters more than talent  
+- Don’t give up after 30 mins of testing  
+- Study the app deeply  
+- Learn from public reports, blogs, tools
+
+---
+
+Everything is free online. Stay sharp. Stay ethical. Keep pushing.
